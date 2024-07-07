@@ -35,8 +35,12 @@ https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/la
 The compiled value of expression `e` is stored in `rax`:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L207-L209
 
-`compile-match-clauses` match each pattern `p`
+`compile-match-clauses` match `rax` with each pattern `p` until matched and value of expression `e` will be the value of `Match` expression:
 https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/langs/knock-plus/compile.rkt#L214-L221
+
+The value of being matched has been stored in stack and move to `rax` register at the begining:
+https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/langs/knock-plus/compile.rkt#L222-L233
+
 
 ---
 
