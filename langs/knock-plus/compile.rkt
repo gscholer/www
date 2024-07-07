@@ -314,9 +314,18 @@
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
     [(Vect ps)
-     (list (seq (Add rsp (* 8 (length cm)))
-                (Jmp next))
-           cm)]
+     (match ps
+       ['()
+       (let ((ok (gensym)))
+          (list (seq (Mov r8 rax)
+                      (And r8 ptr-mask)
+                      (Cmp r8 type-vect)
+                      (Je ok)
+                      (Add rsp (* 8 (length cm)))
+                      (Jmp next)
+                      (Label ok))
+                cm))]
+        )]
     ;; TODO
     ;; This code just pops and goes to the next clause.
     ;; Replace with code that implements pattern.
