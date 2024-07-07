@@ -299,9 +299,17 @@
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
     [(List ps)
-     (list (seq (Add rsp (* 8 (length cm)))
-                (Jmp next))
-           cm)]
+     (match ps
+       ['()
+        (let ((ok (gensym)))
+          (list (seq (Cmp rax (value->bits '()))
+                      (Je ok)
+                      (Add rsp (* 8 (length cm)))
+                      (Jmp next)
+                      (Label ok))
+                cm))]
+       [(cons p ps) (compile-pattern (Cons p (List ps)) cm next)])]
+     
     ;; TODO
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
