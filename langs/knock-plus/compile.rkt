@@ -314,18 +314,40 @@
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
     [(Vect ps)
-     (match ps
-       ['()
-       (let ((ok (gensym)))
-          (list (seq (Mov r8 rax)
-                      (And r8 ptr-mask)
-                      (Cmp r8 type-vect)
-                      (Je ok)
-                      (Add rsp (* 8 (length cm)))
-                      (Jmp next)
-                      (Label ok))
-                cm))]
-        )]
+     (let ((n (length ps))
+           (ok (gensym))
+           (okn (gensym)))
+       (match n
+         [0 (list (seq (Cmp rax type-vect)
+                          (Je ok)
+                          (Add rsp (* 8 (length cm)))
+                          (Jmp next)
+                          (Label ok))
+                    cm)]
+         [_
+          (match (compile-match-pat-vector ps 1 (cons #f cm) next)
+            [(list i1 cm1)
+             (list (seq (Mov r8 rax)
+                          (And r8 ptr-mask)
+                          (Cmp r8 type-vect)        ; check type is vector
+                          (Je ok)
+                          (Add rsp (* 8 (length cm)))
+                          (Jmp next)
+                          (Label ok)
+                          (Xor rax type-vect)
+                          (Mov r8 (Offset rax 0))
+                          (Cmp r8 n)                ; check length equal to n
+                          (Je okn)
+                          (Add rsp (* 8 (length cm)))
+                          (Jmp next)
+                          (Label okn)
+                          (Push rax)
+                          i1
+                    )
+                    cm1)]
+          )]
+        ))]
+
     ;; TODO
     ;; This code just pops and goes to the next clause.
     ;; Replace with code that implements pattern.
@@ -334,6 +356,25 @@
                 (Jmp next))
            cm)]))
 
+;; [Listof Pat] Nat CEnv Symbol -> (list Asm CEnv)
+(define (compile-match-pat-vector ps i cm next)
+  (match ps
+    ['() (list (seq) cm)]
+    [(cons p ps)
+     (match (compile-pattern p cm next)
+        [(list i1 cm1)
+         (match (compile-match-pat-vector ps (add1 i) (cons #f cm1) next)
+           [(list i2 cm2)
+            (list (seq (Mov r8 (Offset rsp 0))        ; vector
+                       (Mov rax (Offset r8 (* 8 i)))  ; i-th value
+                       i1
+                       (Mov r8 (Offset rsp (* 8 (- (length cm1) (length cm)))))
+                       (Push r8)
+                       i2)
+                  cm2)])
+        ])
+      ]
+  ))
 
 ;; Id CEnv -> Integer
 (define (lookup x cenv)
