@@ -26,6 +26,16 @@ https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/la
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L15-L18
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L29-L34
 
+## Registers
+
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L7-L14
+
+* `rbx` is the heap pointer
+
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile.rkt#L24-L27
+
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L71-L78
+
 ## Compile Match
 
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L55-L58
@@ -41,6 +51,9 @@ https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/la
 The value of being matched has been stored in stack and move to `rax` register at the begining:
 https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/langs/knock-plus/compile.rkt#L222-L233
 
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L310-L316
+
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/types.rkt#L7
 
 ---
 
