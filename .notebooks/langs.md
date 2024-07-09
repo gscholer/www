@@ -38,6 +38,8 @@ https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/la
 
 ## Compile Match
 
+There are two kinds of `compile`: `compile-e` and `compile-define`, the value of `compile-e` is stored into `rax` register.
+
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L55-L58
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L75
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L204-L213

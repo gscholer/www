@@ -352,9 +352,18 @@
     ;; This code just pops and goes to the next clause.
     ;; Replace with code that implements pattern.
     [(Pred f)
-     (list (seq (Add rsp (* 8 (length cm)))
-                (Jmp next))
-           cm)]))
+     (let ((ok (gensym)))
+      (list (seq ;(Push rax)  ; the value of e
+                  (Jmp (symbol->label f))
+                  (Cmp rax (value->bits #t)) ; rax is the result of f(e)
+                  (Je ok)
+                  ;(Add rsp 8)
+                  (Add rsp (* 8 (length cm)))
+                  (Jmp next)
+                  (Label ok)
+              )
+            cm))]
+    ))
 
 ;; [Listof Pat] Nat CEnv Symbol -> (list Asm CEnv)
 (define (compile-match-pat-vector ps i cm next)
