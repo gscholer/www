@@ -352,9 +352,13 @@
     ;; This code just pops and goes to the next clause.
     ;; Replace with code that implements pattern.
     [(Pred f)
-     (let ((ok (gensym)))
-      (list (seq (Push rax)  ; the value of e
-                  (Call (symbol->label f))
+     (let ((ok (gensym))
+           (r (gensym)))
+      (list (seq  (Lea r8 r)
+                  (Push r8)
+                  (Push rax)  ; the value of e
+                  (Jmp (symbol->label f))
+                  (Label r)
                   (Cmp rax (value->bits #t)) ; rax is the result of f(e)
                   (Je ok)
                   (Add rsp (* 8 (length cm)))
