@@ -353,11 +353,10 @@
     ;; Replace with code that implements pattern.
     [(Pred f)
      (let ((ok (gensym)))
-      (list (seq ;(Push rax)  ; the value of e
-                  (Jmp (symbol->label f))
+      (list (seq (Push rax)  ; the value of e
+                  (Call (symbol->label f))
                   (Cmp rax (value->bits #t)) ; rax is the result of f(e)
                   (Je ok)
-                  ;(Add rsp 8)
                   (Add rsp (* 8 (length cm)))
                   (Jmp next)
                   (Label ok)
