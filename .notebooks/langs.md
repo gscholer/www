@@ -63,3 +63,6 @@ https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/la
 variables are stored stack and their name are in `CEnv`, which is a list of id:
 https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/langs/knock-plus/compile.rkt#L55
 https://github.com/gscholer/www/blob/4c73f488dabcef384fe9a3fcb8d803923d4499c8/langs/knock-plus/compile.rkt#L82-L86
+
+`compile-define` add a label in asm, how to lookup if a label has been defined?
+https://github.com/gscholer/www/blob/6ca7dfba3eaf5b891d13bcd61d66276757164aa0/langs/knock-plus/compile.rkt#L46-L53
