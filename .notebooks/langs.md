@@ -33,14 +33,21 @@ https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/la
 The pattern syntax:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/ast.rkt#L44-L52
 
-https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L71-L78
-
 There are two kinds of `compile`: `compile-e` and `compile-define`
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L15-L18
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L29-L34
 
+how to compile `car` and `cdr`: `rax` is a `Cons` then, its type is `type-cons`, the value of `Cons` is a pointer, 
+the value of `cdr` is pointed by `rax` and the value of `car` is pointed by `rax + 8`:
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L71-L78
+
+here is how a general expression compiled, each kind of expression has itself compile function:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L55-L58
+
+for `Match` it uses `compile-match`:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L75
+
+here is how `compile-match` defined:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L204-L213
 
 The compiled value of expression `e` is stored in `rax`:
