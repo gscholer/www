@@ -11,34 +11,33 @@
 #f
 ```
 
+## Helper functions
 
-## Code
+`seq`:
+https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/a86/ast.rkt#L313-L322
+
+## Registers
+
+`rbx` is the heap pointer:
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L7-L14
+https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile.rkt#L24-L27
+
+## Compiler
+
+The abstract syntax tree:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/ast.rkt#L2-L5
+
+The expression syntax:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/ast.rkt#L11-L24
 
 The pattern syntax:
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/ast.rkt#L44-L52
 
-
-
-https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/a86/ast.rkt#L313-L322
-
-https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L15-L18
-https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L29-L34
-
-## Registers
-
-https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L7-L14
-
-* `rbx` is the heap pointer
-
-https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile.rkt#L24-L27
-
 https://github.com/gscholer/www/blob/a16519e274f0e948ff4e14bc851ba640928f7e3b/langs/knock-plus/compile-ops.rkt#L71-L78
 
-## Compile Match
-
-There are two kinds of `compile`: `compile-e` and `compile-define`, the value of `compile-e` is stored into `rax` register.
+There are two kinds of `compile`: `compile-e` and `compile-define`
+https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L15-L18
+https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L29-L34
 
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L55-L58
 https://github.com/gscholer/www/blob/10235ac81f7e903284facc77678476543f9529f4/langs/knock-plus/compile.rkt#L75
